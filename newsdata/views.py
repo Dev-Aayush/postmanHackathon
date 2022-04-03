@@ -3,7 +3,7 @@ from turtle import title
 from urllib import response
 from django.shortcuts import render, HttpResponse
 import requests
-from newsdata.private import api_key
+from private import api_key
 # Create your views here.
 
 
