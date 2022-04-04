@@ -12,6 +12,8 @@ api_data = {}
 
 def add_summary():
     global api_data
+    print("api data is 12345678900S")
+    print(api_data)
     summary = []
     for i in range(10):
         try:
@@ -56,7 +58,7 @@ def add_subjectivity():
                 description = api_data["results"][i]["content"]
             if description == None:
                 description = api_data["results"][i]["description"]
-            subjectivity_data.append(subjectivity(description))
+            subjectivity_data.append(int(subjectivity(description)))
         except:
             subjectivity_data.append("InvdAPIres")
     api_data["subjectivity"] = []
@@ -67,7 +69,7 @@ def index(request):
     data = apiCall()
     global api_data
     api_data = data
-    print(api_data)
+    print(data)
     add_summary()
     add_sentiment()
     add_subjectivity()
