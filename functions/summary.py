@@ -1,4 +1,6 @@
 import nltk
+# nltk.download('stopwords')
+# nltk.download('punkt')
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize, sent_tokenize
 
@@ -48,3 +50,5 @@ def summarize(text):
         if (sentence in sentenceValue) and (sentenceValue[sentence] > (1.2 * average)):
             summary += " " + sentence
     return summary
+
+

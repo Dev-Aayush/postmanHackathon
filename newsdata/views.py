@@ -1,6 +1,6 @@
 from asyncio.windows_events import NULL
 import imp
-from turtle import clear, title
+from turtle import clear, pensize, title
 from urllib import response
 from django.shortcuts import render, HttpResponse
 from functions.api import apiCall
@@ -20,6 +20,7 @@ def add_summary():
                 description = api_data["results"][i]["content"]
             if description == None:
                 description = api_data["results"][i]["description"]
+            # print(description)
             summary.append(summarize(description))
         except:
             summary.append(
