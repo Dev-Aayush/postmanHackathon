@@ -70,15 +70,10 @@ def index(request):
     add_summary()
     add_sentiment()
     add_subjectivity()
-    print(data["results"][5]["content"])
-    print(data["results"][5]["full_description"])
     return render(request, "index.html", api_data)
 
 
 def about(request):
-    print(api_data["summary"])
-    print(api_data["sentiment"])
-    print(api_data["subjectivity"])
     return render(request, "about.html")
 
 
@@ -119,4 +114,4 @@ def seventh(request):
 
 def eighth(request):
     global api_data
-    return render(request, "eigth.html", api_data)
+    return render(request, "eighth.html", api_data)
