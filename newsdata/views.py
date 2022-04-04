@@ -5,7 +5,7 @@ from urllib import response
 from django.shortcuts import render, HttpResponse
 from functions.api import apiCall
 from functions.summary import summarize
-from functions.sentiment import sentiment
+from functions.sentiment import sentiment, subjectivity
 # Create your views here.
 api_data = {}
 
@@ -13,13 +13,17 @@ api_data = {}
 def add_summary():
     global api_data
     summary = []
-    for i in range(0, 9):
-        description = api_data["results"][i]["content"]
-        if description == None:
+    for i in range(10):
+        try:
             description = api_data["results"][i]["full_description"]
-        # print(str(i)+description)
-        summary.append(summarize(description))
-    # print(summary)
+            if description == None:
+                description = api_data["results"][i]["content"]
+            if description == None:
+                description = api_data["results"][i]["description"]
+            summary.append(summarize(description))
+        except:
+            summary.append(
+                "Invalid API Response, no content or description provided by API.")
     api_data["summary"] = []
     api_data.update({"summary": summary})
 
@@ -27,26 +31,54 @@ def add_summary():
 def add_sentiment():
     global api_data
     sentiment_data = []
-    for i in range(0, 9):
-        description = api_data["results"][i]["content"]
-        if description == None:
+    for i in range(10):
+        try:
             description = api_data["results"][i]["full_description"]
-        sentiment_data.append(sentiment(description))
+            if description == None:
+                description = api_data["results"][i]["content"]
+            if description == None:
+                description = api_data["results"][i]["description"]
+            sentiment_data.append(sentiment(description))
+        except:
+            sentiment_data.append("InvdAPIres")
     api_data["sentiment"] = []
     api_data.update({"sentiment": sentiment_data})
+
+
+def add_subjectivity():
+    global api_data
+    subjectivity_data = []
+    for i in range(10):
+        try:
+            description = api_data["results"][i]["full_description"]
+            if description == None:
+                description = api_data["results"][i]["content"]
+            if description == None:
+                description = api_data["results"][i]["description"]
+            subjectivity_data.append(subjectivity(description))
+        except:
+            subjectivity_data.append("InvdAPIres")
+    api_data["subjectivity"] = []
+    api_data.update({"subjectivity": subjectivity_data})
 
 
 def index(request):
     data = apiCall()
     global api_data
     api_data = data
+    print(api_data)
     add_summary()
     add_sentiment()
+    add_subjectivity()
+    print(data["results"][5]["content"])
+    print(data["results"][5]["full_description"])
     return render(request, "index.html", api_data)
 
 
 def about(request):
-    print(api_data)
+    print(api_data["summary"])
+    print(api_data["sentiment"])
+    print(api_data["subjectivity"])
     return render(request, "about.html")
 
 
