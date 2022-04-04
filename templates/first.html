@@ -53,17 +53,17 @@
                     </div>
                     <div class="col-md-6 container">
                         <div class="small mb-1">{{results.0.source_id}}</div>
-                        <div class="display-5 fw-bolder mb-3">{{results.0.title}}</div>
+                        <div class="display-6 fw-bolder mb-3">{{results.0.title}}</div>
                         <!-- <div class="fs-5 mb-5">
                             <span class="text-decoration-line-through">$45.00</span>
                             <span>$40.00</span>
                         </div> -->
                         <div class="row mb-3 ms-auto">
-                            <div class="rounded-pill text-info bg-dark w-auto h-auto d-flex align-items-center " >
-                                {{sentiment.0}}
+                            <div class="rounded text-info bg-dark w-auto h-auto d-flex align-items-center p-2" >
+                                Sentiment :&nbsp<b> {{sentiment.0}}</b>
                             </div>
-                            <div class="rounded-pill text-info bg-dark w-auto h-auto mx-1 d-flex align-items-center " >
-                                {{subjectivity.0}}
+                            <div class="rounded text-info bg-dark w-auto h-auto mx-1 d-flex align-items-center " >
+                                % Personal Opinion :&nbsp<b>{{subjectivity.0}}</b>
                             </div>
                         </div>
                         <p class="lead">{{summary.0}}</p>
