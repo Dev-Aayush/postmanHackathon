@@ -4,6 +4,7 @@ from urllib import response
 from django.shortcuts import render, HttpResponse
 import requests
 from private import api_key
+from functions.summary import summarize
 # Create your views here.
 
 
