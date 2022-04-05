@@ -12,8 +12,7 @@ api_data = {}
 
 def add_summary():
     global api_data
-    print("api data is 12345678900S")
-    print(api_data)
+    # print(api_data)
     summary = []
     for i in range(10):
         try:
