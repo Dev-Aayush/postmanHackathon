@@ -69,7 +69,7 @@ def index(request):
     data = apiCall()
     global api_data
     api_data = data
-    print(data)
+    # print(data)
     add_summary()
     add_sentiment()
     add_subjectivity()
