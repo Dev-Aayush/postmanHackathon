@@ -1,12 +1,11 @@
-from asyncio.windows_events import NULL
 import imp
 from turtle import clear, pensize, title
 from urllib import response
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 from functions.api import apiCall
 from functions.summary import summarize
 from functions.sentiment import sentiment, subjectivity
-# Create your views here.
+
 api_data = {}
 
 
@@ -63,7 +62,7 @@ def add_subjectivity():
     api_data["subjectivity"] = []
     api_data.update({"subjectivity": subjectivity_data})
 
-
+# Create your views here.
 def index(request):
     data = apiCall()
     global api_data
