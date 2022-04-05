@@ -4,7 +4,7 @@ from django.shortcuts import render
 from functions.api import apiCall
 from functions.summary import summarize
 from functions.sentiment import sentiment, subjectivity
-
+from functions.get_photo import get_photo
 api_data = {}
 
 
@@ -76,7 +76,8 @@ def index(request):
 
 
 def about(request):
-    return render(request, "about.html")
+    photo = get_photo()
+    return render(request, "about.html", photo)
 
 
 def first(request):
