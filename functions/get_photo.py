@@ -1,0 +1,1 @@
+amartya = "https://scontent-maa2-2.xx.fbcdn.net/v/t39.30808-6/274691159_664980021401768_8703974533666376699_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=Hy-2afHQHcYAX9jyOsy&_nc_ht=scontent-maa2-2.xx&oh=00_AT8dOE4wKanBLpToumnY9PwQH_ZtFrEn57bstiIt4sMjdg&oe=6250DA8F"
