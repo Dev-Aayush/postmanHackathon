@@ -8,22 +8,53 @@ from functions.get_photo import get_photo
 api_data = {}
 
 
+# def add_summary():
+#     global api_data
+#     # print(api_data)
+#     summary = []
+#     for i in range(10):
+#         try:
+#             description = api_data["results"][i]["description"]
+#             content=api_data["results"][i]["content"]
+#             full_description=api_data["results"][i]["full_description"]
+#             summary.append(summarize(description))
+#         except:
+#             summary.append(
+#                 "Invalid API Response, no content or description provided by API.")
+#         if sum
+#     api_data["summary"] = []
+#     api_data.update({"summary": summary})
 def add_summary():
     global api_data
-    # print(api_data)
     summary = []
-    for i in range(10):
+    for i in range(8):
+        description = ""
+        full_description = ""
+        content = ""
         try:
-            description = api_data["results"][i]["content"]
-            if description == None:
-                description = api_data["results"][i]["description"]
-            if description == None:
-                description = api_data["results"][i]["full_description"]
-            print(str(i)+"  "+description)
-            summary.append(summarize(description))
+            description = api_data["results"][i]["description"]
+            length_des = len(description)
         except:
-            summary.append(
-                "Invalid API Response, no content or description provided by API.")
+            description = ""
+            length_des = 0
+        try:
+            full_description = api_data["results"][i]["full_description"]
+            length_ful = len(full_description)
+        except:
+            full_description = ""
+            length_ful = 0
+        try:
+            content = full_description = api_data["results"][i]["content"]
+            length_content = len(content)
+        except:
+            content = ""
+            length_content = 0
+        if length_content > length_des and length_content > length_ful:
+            summary.append(summarize(content))
+        elif length_des > length_content and length_des > length_ful:
+            summary.append(description)
+        else:
+            summary.append(summarize(full_description))
     api_data["summary"] = []
     api_data.update({"summary": summary})
 
@@ -31,16 +62,35 @@ def add_summary():
 def add_sentiment():
     global api_data
     sentiment_data = []
-    for i in range(10):
+    for i in range(8):
+        description = ""
+        full_description = ""
+        content = ""
         try:
-            description = api_data["results"][i]["content"]
-            if description == None:
-                description = api_data["results"][i]["description"]
-            if description == None:
-                description = api_data["results"][i]["full_description"]
-            sentiment_data.append(sentiment(description))
+            description = api_data["results"][i]["description"]
+            length_des = len(description)
         except:
-            sentiment_data.append("InvdAPIres")
+            description = ""
+            length_des = 0
+        try:
+            full_description = api_data["results"][i]["full_description"]
+            length_ful = len(full_description)
+        except:
+            full_description = ""
+            length_ful = 0
+        try:
+            content = full_description = api_data["results"][i]["content"]
+            length_content = len(content)
+        except:
+            content = ""
+            length_content = 0
+        if length_content > length_des and length_content > length_ful:
+            sentiment_data.append(sentiment(content))
+        elif length_des > length_content and length_des > length_ful:
+            sentiment_data.append(sentiment(description))
+        else:
+            sentiment_data.append(sentiment(full_description))
+
     api_data["sentiment"] = []
     api_data.update({"sentiment": sentiment_data})
 
@@ -49,15 +99,33 @@ def add_subjectivity():
     global api_data
     subjectivity_data = []
     for i in range(10):
+        description = ""
+        full_description = ""
+        content = ""
         try:
-            description = api_data["results"][i]["content"]
-            if description == None:
-                description = api_data["results"][i]["description"]
-            if description == None:
-                description = api_data["results"][i]["full_description"]
-            subjectivity_data.append(int(subjectivity(description)))
+            description = api_data["results"][i]["description"]
+            length_des = len(description)
         except:
-            subjectivity_data.append("InvdAPIres")
+            description = ""
+            length_des = 0
+        try:
+            full_description = api_data["results"][i]["full_description"]
+            length_ful = len(full_description)
+        except:
+            full_description = ""
+            length_ful = 0
+        try:
+            content = full_description = api_data["results"][i]["content"]
+            length_content = len(content)
+        except:
+            content = ""
+            length_content = 0
+        if length_content > length_des and length_content > length_ful:
+            subjectivity_data.append(subjectivity(content))
+        elif length_des > length_content and length_des > length_ful:
+            subjectivity_data.append(subjectivity(description))
+        else:
+            subjectivity.append(summarize(full_description))
     api_data["subjectivity"] = []
     api_data.update({"subjectivity": subjectivity_data})
 
@@ -68,7 +136,6 @@ def index(request):
     data = apiCall()
     global api_data
     api_data = data
-    print(api_data)
     add_summary()
     add_sentiment()
     add_subjectivity()
