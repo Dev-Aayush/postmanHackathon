@@ -54,11 +54,11 @@ def add_summary():
             content = ""
             length_content = 0
             print("excpet content "+str(i))
-        if length_content >= length_des and length_content >= length_ful:
+        if length_content >= length_des and length_content >= length_ful and length_content != 0:
             summary.append(summarize(content))
-        elif length_des >= length_content and length_des >= length_ful:
+        elif length_des >= length_content and length_des >= length_ful and length_des != 0:
             summary.append(description)
-        elif length_ful >= length_content and length_ful >= length_des:
+        elif length_ful >= length_content and length_ful >= length_des and length_ful != 0:
             print(str(full_description)+" "+str(i))
             summary.append(summarize(full_description))
         else:
