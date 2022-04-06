@@ -125,7 +125,7 @@ def add_subjectivity():
         elif length_des > length_content and length_des > length_ful:
             subjectivity_data.append(subjectivity(description))
         else:
-            subjectivity.append(summarize(full_description))
+            subjectivity_data.append(subjectivity(full_description))
     api_data["subjectivity"] = []
     api_data.update({"subjectivity": subjectivity_data})
 

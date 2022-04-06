@@ -15,7 +15,7 @@ def sentiment(text):
 
 def subjectivity(text):
     analysis = TextBlob(text)
-    return analysis.sentiment.subjectivity*100
+    return int(analysis.sentiment.subjectivity*100)
 
 
 # text = '''
