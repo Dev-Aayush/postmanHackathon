@@ -37,24 +37,33 @@ def add_summary():
         except:
             description = ""
             length_des = 0
+            print("excpet des "+str(i))
         try:
             full_description = api_data["results"][i]["full_description"]
+            print(full_description)
             length_ful = len(full_description)
+            print(length_ful)
         except:
             full_description = ""
             length_ful = 0
+            print("excpet full "+str(i))
         try:
-            content = full_description = api_data["results"][i]["content"]
+            content = api_data["results"][i]["content"]
             length_content = len(content)
         except:
             content = ""
             length_content = 0
-        if length_content > length_des and length_content > length_ful:
+            print("excpet content "+str(i))
+        if length_content >= length_des and length_content >= length_ful:
             summary.append(summarize(content))
-        elif length_des > length_content and length_des > length_ful:
+        elif length_des >= length_content and length_des >= length_ful:
             summary.append(description)
-        else:
+        elif length_ful >= length_content and length_ful >= length_des:
+            print(str(full_description)+" "+str(i))
             summary.append(summarize(full_description))
+        else:
+            summary.append(
+                "Content of proper is not provided by API to summarize properly")
     api_data["summary"] = []
     api_data.update({"summary": summary})
 
@@ -79,7 +88,7 @@ def add_sentiment():
             full_description = ""
             length_ful = 0
         try:
-            content = full_description = api_data["results"][i]["content"]
+            content = api_data["results"][i]["content"]
             length_content = len(content)
         except:
             content = ""
@@ -88,8 +97,10 @@ def add_sentiment():
             sentiment_data.append(sentiment(content))
         elif length_des > length_content and length_des > length_ful:
             sentiment_data.append(sentiment(description))
-        else:
+        elif length_ful > length_content and length_ful > length_des:
             sentiment_data.append(sentiment(full_description))
+        else:
+            sentiment_data.append("Neutral")
 
     api_data["sentiment"] = []
     api_data.update({"sentiment": sentiment_data})
@@ -115,7 +126,7 @@ def add_subjectivity():
             full_description = ""
             length_ful = 0
         try:
-            content = full_description = api_data["results"][i]["content"]
+            content = api_data["results"][i]["content"]
             length_content = len(content)
         except:
             content = ""
@@ -124,8 +135,10 @@ def add_subjectivity():
             subjectivity_data.append(subjectivity(content))
         elif length_des > length_content and length_des > length_ful:
             subjectivity_data.append(subjectivity(description))
-        else:
+        elif length_ful > length_content and length_ful > length_des:
             subjectivity_data.append(subjectivity(full_description))
+        else:
+            subjectivity_data.append(0)
     api_data["subjectivity"] = []
     api_data.update({"subjectivity": subjectivity_data})
 
