@@ -14,12 +14,12 @@ def add_summary():
     summary = []
     for i in range(10):
         try:
-            description = api_data["results"][i]["full_description"]
-            if description == None:
-                description = api_data["results"][i]["content"]
+            description = api_data["results"][i]["content"]
             if description == None:
                 description = api_data["results"][i]["description"]
-            # print(description)
+            if description == None:
+                description = api_data["results"][i]["full_description"]
+            print(str(i)+"  "+description)
             summary.append(summarize(description))
         except:
             summary.append(
@@ -33,11 +33,11 @@ def add_sentiment():
     sentiment_data = []
     for i in range(10):
         try:
-            description = api_data["results"][i]["full_description"]
-            if description == None:
-                description = api_data["results"][i]["content"]
+            description = api_data["results"][i]["content"]
             if description == None:
                 description = api_data["results"][i]["description"]
+            if description == None:
+                description = api_data["results"][i]["full_description"]
             sentiment_data.append(sentiment(description))
         except:
             sentiment_data.append("InvdAPIres")
@@ -50,11 +50,11 @@ def add_subjectivity():
     subjectivity_data = []
     for i in range(10):
         try:
-            description = api_data["results"][i]["full_description"]
-            if description == None:
-                description = api_data["results"][i]["content"]
+            description = api_data["results"][i]["content"]
             if description == None:
                 description = api_data["results"][i]["description"]
+            if description == None:
+                description = api_data["results"][i]["full_description"]
             subjectivity_data.append(int(subjectivity(description)))
         except:
             subjectivity_data.append("InvdAPIres")
@@ -68,7 +68,7 @@ def index(request):
     data = apiCall()
     global api_data
     api_data = data
-    # print(data)
+    print(api_data)
     add_summary()
     add_sentiment()
     add_subjectivity()
